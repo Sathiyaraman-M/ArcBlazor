@@ -60,7 +60,7 @@
     <CreateItem Include="./TScripts/*.js">
       <Output TaskParameter="Include" ItemName="jsFilesToCombine" />
     </CreateItem>
-    <ReadLinesFromFile File="%(jsFilesToCombine.FullPath)">
+    <ReadLinesFromFile Condition="'@(jsFilesToCombine)' != ''" File="%(jsFilesToCombine.FullPath)">
       <Output TaskParameter="Lines" ItemName="jsLines" />
     </ReadLinesFromFile>
     <WriteLinesToFile File="./TScripts/combined/ArcBlazor.js" Lines="@(jsLines)" Overwrite="true" />
