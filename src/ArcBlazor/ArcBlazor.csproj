@@ -1,5 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
-
+  
+  <PropertyGroup>
+    <ResolveStaticWebAssetsInputsDependsOn>
+      IncludeGeneratedStaticFiles;
+      $(ResolveStaticWebAssetsInputsDependsOn)
+    </ResolveStaticWebAssetsInputsDependsOn>
+  </PropertyGroup>
+  
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -9,9 +16,82 @@
     <SupportedPlatform Include="browser" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <IsTrimmable>true</IsTrimmable>
+    <TrimMode>link</TrimMode>
+    <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+  </PropertyGroup>
+
+  <!--Is this a rebuild - Dont clean generated files as this breaks rebuild behaviour-->
+  <Target Name="ShouldCleanGeneratedFiles" BeforeTargets="BeforeRebuild">
+    <PropertyGroup>
+      <CleanGeneratedFiles>false</CleanGeneratedFiles>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="CleanGeneratedFiles" BeforeTargets="Clean" Condition="'$(CleanGeneratedFiles)' != 'false'">
+    <ItemGroup>
+      <FilesToClean Include="./TScripts/combined/ArcBlazor.js" />
+      <FilesToClean Include="./wwwroot/ArcBlazor.min.js" />
+      <FilesToClean Include="./wwwroot/ArcBlazor.min.css" />
+    </ItemGroup>
+    <Delete Files="@(FilesToClean)" />
+  </Target>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.8" />
+  </ItemGroup>
+
+  <Target Name="ToolRestore">
+    <Exec Command="dotnet tool restore" StandardOutputImportance="high" />
+  </Target>
+
+  <!--combine js files-->
+  <Target Name="CombineJS">
+    <CreateItem Include="./TScripts/*.js">
+      <Output TaskParameter="Include" ItemName="jsFilesToCombine" />
+    </CreateItem>
+    <ReadLinesFromFile File="%(jsFilesToCombine.FullPath)">
+      <Output TaskParameter="Lines" ItemName="jsLines" />
+    </ReadLinesFromFile>
+    <WriteLinesToFile File="./TScripts/combined/ArcBlazor.js" Lines="@(jsLines)" Overwrite="true" />
+  </Target>
+  
+  <Target Name="WebCompiler" DependsOnTargets="ToolRestore;CombineJS">
+    <!--compile and minify scss-->
+    <Exec Command="webcompiler ./Styles/ArcBlazor.scss -c excubowebcompiler.json" StandardOutputImportance="high" StandardErrorImportance="high" />
+    <!--minify js-->
+    <Exec Command="webcompiler ./TScripts/combined/ArcBlazor.js -c excubowebcompiler.json" StandardOutputImportance="high" StandardErrorImportance="high" />
+  </Target>
+
+  <Target Name="IncludeGeneratedStaticFiles" DependsOnTargets="WebCompiler">
+    <Error Condition="!Exists('wwwroot/ArcBlazor.min.css')" Text="Missing ArcBlazor.min.css in wwwroot" />
+    <Error Condition="!Exists('wwwroot/ArcBlazor.min.js')" Text="Missing ArcBlazor.min.js in wwwroot" />
+    <ItemGroup>
+      <Content Include="wwwroot/ArcBlazor.min.css" Condition="!Exists('wwwroot/ArcBlazor.min.css')" />
+      <Content Include="wwwroot/ArcBlazor.min.js" Condition="!Exists('wwwroot/ArcBlazor.min.js')" />
+    </ItemGroup>
+  </Target>
+
+  <!--Dont Include in build output-->
+  <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+    <Content Remove="excubowebcompiler.json" />
+    <Content Remove="**/*/DoNotRemove.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TScripts\combined\" />
+    <Folder Include="wwwroot" />
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!--For automatic compile on save of the scss use
+    cd ./src/MudBlazor
+    dotnet watch webcompiler ./Styles/ArcBlazor.scss -c excubowebcompiler.json
+    -->
+    <Watch Include="**/*.scss" />
   </ItemGroup>
 
 </Project>
