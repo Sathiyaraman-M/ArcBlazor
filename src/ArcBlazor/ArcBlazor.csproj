@@ -5,6 +5,14 @@
       IncludeGeneratedStaticFiles;
       $(ResolveStaticWebAssetsInputsDependsOn)
     </ResolveStaticWebAssetsInputsDependsOn>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Title>ArcBlazor</Title>
+    <Authors>Sathiyaraman M</Authors>
+    <Description>A Blazor Component Library based on Tabler. Inspired by MudBlazor</Description>
+    <RepositoryUrl>https://github.com/Sathiyaraman-M/ArcBlazor</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageVersion>0.0.1</PackageVersion>
+    <PackageProjectUrl>https://github.com/Sathiyaraman-M/ArcBlazor</PackageProjectUrl>
   </PropertyGroup>
   
   <PropertyGroup>
