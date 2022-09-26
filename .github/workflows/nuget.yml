@@ -1,0 +1,28 @@
+name: "Build and Deploy to NuGet"
+on:
+  push: 
+    branches: [ "master" ]
+    
+env:
+  PROJECT_PATH: 'src/ArcBlazor/ArcBlazor.csproj'
+  PACKAGE_OUTPUT_PATH: '${{ github.workspace }}\output'
+  NUGET_SOURCE_URL: 'https://api.nuget.org/v3/index.json'
+    
+jobs: 
+  deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v2
+        with: 
+          dotnet-version: '6.0.x'
+          
+      - name: Restore Packages
+        run: dotnet restore ${{ env.PROJECT_PATH }}
+        
+      - name: Build Package
+        run: dotnet build ${{ env.PROJECT_PATH }} --no-restore --configuration Release 
