@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcBlazor", "ArcBlazor\ArcBlazor.csproj", "{54B50F81-9BF1-4367-B479-CAFF439DA467}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcBlazor.Sample", "ArcBlazor.Sample\ArcBlazor.Sample.csproj", "{DB13BBDD-58EA-4CDA-A392-9E35B8CCCF3F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{54B50F81-9BF1-4367-B479-CAFF439DA467}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54B50F81-9BF1-4367-B479-CAFF439DA467}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54B50F81-9BF1-4367-B479-CAFF439DA467}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB13BBDD-58EA-4CDA-A392-9E35B8CCCF3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB13BBDD-58EA-4CDA-A392-9E35B8CCCF3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB13BBDD-58EA-4CDA-A392-9E35B8CCCF3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB13BBDD-58EA-4CDA-A392-9E35B8CCCF3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
