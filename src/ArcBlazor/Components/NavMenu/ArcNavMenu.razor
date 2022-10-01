@@ -1,0 +1,18 @@
+﻿@namespace ArcBlazor
+@using ArcBlazor.Utilities
+@inherits ArcComponentBase
+
+<ul class="@ClassName">
+    @ChildContent
+</ul>
+
+@code
+{
+    private string ClassName =>
+        new CssBuilder("navbar-nav")
+            .AddClass(Class)
+            .Build();
+    
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}
