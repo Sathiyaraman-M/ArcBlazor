@@ -12,7 +12,7 @@ public class ArcBaseSelectItem : ArcComponentBase
     [Parameter]
     [Category(CategoryTypes.General.Behavior)]
     public bool Disabled { get; set; }
-    
+
     /// <summary>
     /// Link to a URL when clicked.
     /// </summary>
