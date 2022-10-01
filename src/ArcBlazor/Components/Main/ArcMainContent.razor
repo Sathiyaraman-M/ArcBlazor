@@ -1,0 +1,18 @@
+﻿@namespace ArcBlazor
+@using ArcBlazor.Utilities
+@inherits ArcComponentBase
+
+<div @attributes="@UserAttributes" class="@ClassName" style="@Style">
+    @ChildContent
+</div>
+
+@code
+{
+    private string ClassName => new CssBuilder()
+        .AddClass("container")
+        .AddClass(Class)
+        .Build();
+    
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}
