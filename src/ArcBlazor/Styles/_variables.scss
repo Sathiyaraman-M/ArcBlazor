@@ -1,0 +1,68 @@
+﻿$prefix: "arc-" !default;
+
+// BASE CONFIG
+$enable-social-colors: true !default;
+$enable-extra-colors: true !default;
+$enable-gradients: false !default;
+$enable-navbar-vertical: true !default;
+$enable-dark-mode: true !default;
+$enable-negative-margins: false !default;
+$enable-rfs: false !default;
+
+// ASSETS BASE
+$assets-base: ".." !default;
+
+// FONTS
+$font-google: null !default;
+$font-google-monospaced: null !default;
+$font-local: null !default;
+$font-icons: () !default;
+
+$font-family-sans-serif: unquote("#{if($font-local, "#{$font-local}, ", ' ')}#{if($font-google, "#{$font-google}, ", ' ')}") -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif !default;
+$font-family-monospace: unquote("#{if($font-google-monospaced, "#{$font-google-monospaced}, ", '')}") Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+$font-family-serif: "Georgia", "Times New Roman", times, serif !default;
+
+
+//Icons
+$icon-stroke-width: 1.5 !default;
+$icon-size: 1.25rem !default;
+
+//Fonts
+$font-size-75: .75rem !default;
+$font-size-100: .875rem !default;
+$font-size-200: 1rem !default;
+$font-size-300: 1.25rem !default;
+$font-size-400: 1.5rem !default;
+$font-size-500: 1.75rem !default;
+$font-size-600: 2rem !default;
+$font-size-700: 2.5rem !default;
+
+
+
+$line-height-100: 1rem !default;
+$line-height-200: 1.25rem !default;
+$line-height-300: 1.5rem !default;
+$line-height-400: 1.75rem !default;
+$line-height-500: 2rem !default;
+$line-height-600: 2.5rem !default;
+$line-height-700: 3rem !default;
+
+
+
+$font-size-base: .875rem !default;
+$body-letter-spacing: 0 !default;
+
+$font-weight-light: 300 !default;
+$font-weight-normal: 400 !default;
+$font-weight-medium: 500 !default;
+$font-weight-bold: 600 !default;
+
+$headings-font-weight: var(--#{$prefix}font-weight-bold) !default;
+
+$font-weights: (
+        light: $font-weight-light,
+        normal: $font-weight-normal,
+        medium: $font-weight-medium,
+        bold: $font-weight-bold,
+        headings: $headings-font-weight,
+) !default;
