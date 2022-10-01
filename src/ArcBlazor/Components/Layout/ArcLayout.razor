@@ -1,0 +1,12 @@
+﻿@namespace ArcBlazor
+@inherits ArcComponentBase
+
+<div class="page">
+    @ChildContent
+</div>
+
+@code
+{
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}
