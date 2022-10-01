@@ -1,17 +1,22 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu/>
-    </div>
-
-    <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div>
-
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
-</div>
+    <ArcNavBar Fluid>
+        <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 ps-1 pe-md-3">
+            ArcBlazor Sample
+        </h1>
+        <ArcNavMenu Class="mr-auto">
+            <ArcNavItem>
+                <ArcNavLink Href="/" Match="NavLinkMatch.All">Home</ArcNavLink>
+            </ArcNavItem>
+            <ArcNavItem>
+                <ArcNavLink Href="/Counter">Counter</ArcNavLink>
+            </ArcNavItem>
+            <ArcNavItem>
+                <ArcNavLink Href="/fetchdata">Fetch Data</ArcNavLink>
+            </ArcNavItem>
+        </ArcNavMenu>
+    </ArcNavBar>
+    <ArcMainContent Class="mt-2">       
+        @Body
+    </ArcMainContent>
+</ArcLayout>
