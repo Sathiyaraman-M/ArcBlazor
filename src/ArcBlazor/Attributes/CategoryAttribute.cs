@@ -95,4 +95,23 @@ public static class CategoryTypes
     {
         public const string Misc = "Misc";
     }
+
+    public static class NavBar
+    {
+        public const string Appearance = "Appearance";
+        public const string Behaviour = "Behaviour";
+    }
+
+    public static class NavMenu
+    {
+        public const string Appearance = "Appearance";
+        public const string Behaviour = "Behaviour";
+        public const string ClickAction = "ClickAction";
+    }
+
+    public static class NavItem
+    {
+        public const string Appearance = "Appearance";
+        public const string Behaviour = "Behaviour";
+    }
 }

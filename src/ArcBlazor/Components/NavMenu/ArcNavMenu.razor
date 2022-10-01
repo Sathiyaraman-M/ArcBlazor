@@ -2,9 +2,11 @@
 @using ArcBlazor.Utilities
 @inherits ArcComponentBase
 
-<ul class="@ClassName">
-    @ChildContent
-</ul>
+<div class="collapse navbar-collapse">
+    <ul class="@ClassName">
+        @ChildContent
+    </ul>
+</div>
 
 @code
 {

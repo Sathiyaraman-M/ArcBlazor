@@ -1,0 +1,24 @@
+﻿@namespace ArcBlazor
+@using ArcBlazor.Utilities
+@using Microsoft.AspNetCore.Components.Routing
+@inherits ArcBaseSelectItem
+
+<NavLink class="@ClassName" Match="@Match" href="@Href" target="@Target">
+    @ChildContent
+</NavLink>
+
+@code
+{
+    private string ClassName => 
+        new CssBuilder("nav-link")
+            .AddClass(Class)
+            .Build();
+    
+    [Parameter]
+    [Category(CategoryTypes.NavMenu.Behaviour)]
+    public NavLinkMatch Match { get; set; } = NavLinkMatch.Prefix;
+
+    [Parameter]
+    [Category(CategoryTypes.NavMenu.ClickAction)]
+    public string Target { get; set; }
+}

@@ -1,0 +1,12 @@
+﻿@namespace ArcBlazor
+@inherits ArcComponentBase
+<li class="nav-item">
+    @ChildContent
+</li>
+
+@code
+{
+    [Parameter]
+    [Category(CategoryTypes.NavItem.Behaviour)]
+    public RenderFragment ChildContent { get; set; }
+}
