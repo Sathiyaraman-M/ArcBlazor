@@ -26,7 +26,7 @@ public partial class ArcButton : ArcBaseButton
     public Size Size { get; set; }
 
     [Parameter] 
-    public Color Color { get; set; } = Color.Primary;
+    public ArcColor Color { get; set; } = ArcColor.Primary;
 
     [Parameter]
     public string StartIcon { get; set; }

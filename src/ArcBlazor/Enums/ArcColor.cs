@@ -2,7 +2,7 @@
 
 namespace ArcBlazor;
 
-public enum Color : byte
+public enum ArcColor : byte
 {
     [Description("primary")]
     Primary,
