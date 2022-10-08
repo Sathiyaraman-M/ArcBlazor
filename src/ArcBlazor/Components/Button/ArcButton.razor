@@ -1,2 +1,25 @@
 ﻿@namespace ArcBlazor
+@using ArcBlazor.Extensions
 @inherits ArcBaseButton
+
+<ArcElement @bind-Ref="@_elementReference"
+            HtmlTag="@HtmlTag"
+            Class="@ClassName"
+            Style="@Style"
+            @attributes="@UserAttributes"
+            @onclick="OnClickHandler"
+            type="@ButtonType.ToDescriptionString()"
+            href="@Href"
+            target="@Target"
+            rel="@(Target == "_blank" ? "noopener" : null)"
+            disabled="@Disabled">
+    @if (!string.IsNullOrEmpty(StartIcon))
+    {
+        <span>@StartIcon</span>
+    }
+    @ChildContent
+    @if (!string.IsNullOrEmpty(EndIcon))
+    {
+        <span>@EndIcon</span>
+    }
+</ArcElement>
