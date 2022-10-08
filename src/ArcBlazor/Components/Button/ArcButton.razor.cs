@@ -7,7 +7,8 @@ namespace ArcBlazor;
 public partial class ArcButton : ArcBaseButton
 {
     private string ClassName => new CssBuilder("btn")
-        .AddClass($"btn-{Color.ToDescriptionString()}")
+        .AddClass($"btn-{Color.ToDescriptionString()}", Variant == ButtonVariant.Default)
+        .AddClass($"btn-{Variant.ToDescriptionString()}-{Color.ToDescriptionString()}", Variant != ButtonVariant.Default)
         .AddClass("btn-square", Square)
         .AddClass("btn-pill", Pill)
         .AddClass("btn-sm", Size == Size.Small)
@@ -21,6 +22,9 @@ public partial class ArcButton : ArcBaseButton
     
     [Parameter]
     public bool Pill { get; set; }
+    
+    [Parameter]
+    public ButtonVariant Variant { get; set; }
     
     [Parameter]
     public Size Size { get; set; }
