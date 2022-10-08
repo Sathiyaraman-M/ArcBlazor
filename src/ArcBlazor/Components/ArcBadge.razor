@@ -1,0 +1,34 @@
+﻿@namespace ArcBlazor
+@using ArcBlazor.Utilities
+@using ArcBlazor.Extensions
+@inherits ArcComponentBase
+
+<span class="@ClassName" style="@Style" @attributes="@UserAttributes">
+    @ChildContent
+</span>
+
+@code {
+    private string ClassName => new CssBuilder()
+        .AddClass("badge")
+        .AddClass("badge-outline", Outline)
+        .AddClass("badge-pill", Pill)
+        .AddClass($"bg-{Color.ToDescriptionString()}", !Soft)
+        .AddClass($"bg-{Color.ToDescriptionString()}-lt", Soft)
+        .AddClass(Class)
+        .Build();
+
+    [Parameter]
+    public ArcColor Color { get; set; } = ArcColor.Primary;
+    
+    [Parameter]
+    public bool Outline { get; set; }
+    
+    [Parameter]
+    public bool Pill { get; set; }
+    
+    [Parameter]
+    public bool Soft { get; set; }
+    
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}
