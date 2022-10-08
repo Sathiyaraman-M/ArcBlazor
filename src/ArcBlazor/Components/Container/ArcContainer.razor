@@ -1,0 +1,21 @@
+﻿@using ArcBlazor.Utilities
+@using ArcBlazor.Extensions
+@inherits ArcComponentBase
+
+<div class="@ClassName" style="@Style" @attributes="@UserAttributes">
+    @ChildContent
+</div>
+
+@code {
+    private string ClassName => new CssBuilder()
+        .AddClass("container", Breakpoint == Breakpoint.None)
+        .AddClass($"container-{Breakpoint.ToDescriptionString()}", Breakpoint != Breakpoint.None)
+        .AddClass(Class)
+        .Build();
+
+    [Parameter]
+    public Breakpoint Breakpoint { get; set; } = Breakpoint.None;
+    
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}
