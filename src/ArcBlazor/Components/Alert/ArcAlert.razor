@@ -1,0 +1,52 @@
+﻿@namespace ArcBlazor
+@using ArcBlazor.Utilities
+@using ArcBlazor.Extensions
+@inherits ArcComponentBase
+
+<div class="@ClassName" style="@Style" @attributes="@UserAttributes" role="alert">
+    @if (Title != null)
+    {
+        <div class="alert-title">
+            @Title
+        </div>
+    }
+    @ChildContent
+    @if (AlertActions != null)
+    {
+        <div class="btn-list">
+            @AlertActions
+        </div>
+    }
+    @if (Dismissible)
+    {
+        <a class="btn-close @(Important ? "btn-close-white" : "")" data-bs-dismiss="alert" aria-label="close"></a>
+    }
+</div>
+
+@code {
+    private string ClassName => new CssBuilder()
+        .AddClass("alert")
+        .AddClass($"alert-{Color.ToDescriptionString()}")
+        .AddClass("alert-dismissible", Dismissible)
+        .AddClass("alert-important", Important)
+        .AddClass(Class)
+        .Build();
+
+    [Parameter]
+    public ArcColor Color { get; set; } = ArcColor.Primary;
+    
+    [Parameter]
+    public RenderFragment Title { get; set; }
+    
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    
+    [Parameter]
+    public bool Dismissible { get; set; }
+    
+    [Parameter]
+    public bool Important { get; set; }
+    
+    [Parameter]
+    public RenderFragment AlertActions { get; set; }
+}
