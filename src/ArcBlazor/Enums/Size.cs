@@ -4,10 +4,7 @@ namespace ArcBlazor;
 
 public enum Size
 {
-    [Description("small")]
+    Default,
     Small,
-    [Description("medium")]
-    Medium,
-    [Description("large")]
     Large
 }
