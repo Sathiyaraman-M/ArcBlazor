@@ -1,0 +1,24 @@
+﻿@namespace ArcBlazor
+@inherits ArcComponentBase
+
+<div class="@ClassName" style="@Style" @attibutes="@UserAttributes">
+    @if (StatusPosition != CardStatusPosition.None)
+    {
+        <div class="@StatusClassName"></div>
+    }
+    @if (ImageContent != null)
+    {
+        <div class="@ImageClassName">
+            @ImageContent
+        </div>
+    }
+    @HeaderContent != null)
+    {
+        @HeaderContent
+    }
+    @ChildContent
+    @if (CardActions != null)
+    {
+        @CardActions
+    }
+</div>
