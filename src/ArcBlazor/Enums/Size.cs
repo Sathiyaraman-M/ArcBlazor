@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace ArcBlazor;
+﻿namespace ArcBlazor;
 
 public enum Size
 {
